@@ -33,8 +33,8 @@ public class HackEduApplication implements CommandLineRunner {
 		learningHistory.setDateAccess(LocalDate.of(2021, 7, 17));
 		learningHistory.setContentId("12586");
 
-		learningHistory.setUser(user);
 		user.setLearningHistory(learningHistory);
+		learningHistory.setUser(user);
 
 		userRepository.save(user);
 	}
