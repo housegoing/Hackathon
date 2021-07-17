@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
+import Typography from '@material-ui/core/Typography';
 
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm';
@@ -18,13 +18,18 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    width: '2000px',
+    width: '1800px',
     flexDirection: "column",
   },
   signupButton: {
     height: '70px',
     width: '200px',
+    
   },
+  buttonDiv: {
+    width: '1500px',
+    paddingLeft: '830px',
+  }
 }));
 
 
@@ -44,14 +49,25 @@ function AppRouter() {
         <div className={classes.root}>
           
         <Route path="/">
-          <Button className={classes.signupButton} onClick={showSignup} > {showSignForm ? "login" : "signup"} </Button>
+          <div className={classes.buttonDiv}>
+            <Button className={classes.signupButton} onClick={showSignup} > {showSignForm ? "login" : "signup"} </Button>
+          </div>
+          
+          {
+            logedin ? <Typography>dear volunteer, thank you for coming ^ _ ^ </Typography>
+            :
+            <div>
             {
               showSignForm ? <SignupForm /> : <LoginForm />
             } 
+            </div>
+          }
+          
+            
         </Route>
+        <hr/>
 
-
-        <div>
+        <div className={classes.root}>
           <Route path="/uploadpage" component={UploadPage} />
         </div>
 

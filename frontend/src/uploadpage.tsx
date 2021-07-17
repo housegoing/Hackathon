@@ -21,13 +21,33 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
       height: '100vh',
       overflow: 'auto',
-      maxWidth: '2000px',
-      float: 'left',
+      width: '2000px',
+      
     },
-    signupButton: {
+    subUpload: {
+      display: 'flex',
+      flexGrow: 1,
+      height: '100vh',
+      overflow: 'auto',
+      
+    },
+    historyButton: {
       height: '70px',
       width: '200px',
+      backgroundColor: 'lightgrey',
     },
+    videoButton: {
+        height: '70px',
+        width: '200px',
+        backgroundColor: 'lightgrey',
+        marginLeft: '30px',
+    },
+    audioButton: {
+        height: '70px',
+        width: '200px',
+        backgroundColor: 'lightgrey',
+        marginLeft: '30px',
+    }
   }));
 
 const UploadPage = () => {
@@ -71,38 +91,38 @@ const UploadPage = () => {
     return (
 
         <div className={classes.upload}>
-            <div>
+            <div className={classes.subUpload}>
             {
                 showHistory 
                 ? <UploadHistory></UploadHistory>
-                : <Button className={classes.signupButton} onClick={getUploadHistory}>Upload History</Button>
+                : <Button className={classes.historyButton} onClick={getUploadHistory}>Upload History</Button>
             }
             {
                 showHistory 
-                ? <Button className={classes.signupButton} onClick={closeUploadHistory}>Close</Button>
+                ? <Button className={classes.historyButton} onClick={closeUploadHistory}>Close</Button>
                 : <Typography></Typography>
             }
             </div>
-            <div>
+            <div className={classes.subUpload}>
             {
                 upText 
                 ? <UpVideo></UpVideo>
-                :  <Button className={classes.signupButton} onClick={uploadText}>Text</Button>
+                :  <Button className={classes.videoButton} onClick={uploadText}>Text</Button>
             }
             {
                 upText 
-                ? <Button className={classes.signupButton} onClick={cancelText}>cancel</Button>
+                ? <Button className={classes.videoButton} onClick={cancelText}>cancel</Button>
                 :  <text></text>
             }
             {
                    
                 upAudio
                 ? <UpAudio></UpAudio>
-                :  <Button className={classes.signupButton} onClick={uploadAudio}>Audio</Button>
+                :  <Button className={classes.audioButton} onClick={uploadAudio}>Audio</Button>
             }
             {
                 upAudio 
-                ? <Button className={classes.signupButton} onClick={cancelAudio}>cancel</Button>
+                ? <Button className={classes.audioButton} onClick={cancelAudio}>cancel</Button>
                 :  <text></text>
             }
             </div>

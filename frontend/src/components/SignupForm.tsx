@@ -25,7 +25,8 @@ export const SignupForm = () => {
     
     const emailRef = React.createRef<HTMLInputElement>();
     const passwordRef = React.createRef<HTMLInputElement>();
-    const nameRef = React.createRef<HTMLInputElement>();
+    const firstnameRef = React.createRef<HTMLInputElement>();
+    const lastnameRef = React.createRef<HTMLInputElement>();
     const [error, setError] = React.useState(' ');
     const [firstNameError, setFirstNameError] = React.useState(false);
     const [lastNameError, setLastNameError] = React.useState(false);
@@ -39,8 +40,6 @@ export const SignupForm = () => {
         history.push("/uploadpage");
     }
   
-
-
     return (
       <React.Fragment>
         <CssBaseline />
@@ -48,7 +47,7 @@ export const SignupForm = () => {
           <TextField
             className={classes.textField}
             error={firstNameError}
-            inputRef={nameRef}
+            inputRef={firstnameRef}
             label="First Name"
             required
             size="small"
@@ -59,7 +58,7 @@ export const SignupForm = () => {
           <TextField
             className={classes.textField}
             error={lastNameError}
-            inputRef={nameRef}
+            inputRef={lastnameRef}
             label="Last Name"
             required
             size="small"
