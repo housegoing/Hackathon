@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     overflow: 'auto',
     width: '2000px',
+    flexDirection: "column",
   },
   signupButton: {
     height: '70px',
@@ -46,16 +47,16 @@ function AppRouter() {
         <div className={classes.root}>
         <Route path="/">
           <Button className={classes.signupButton} onClick={showSignup} > {showSignForm ? "login" : "signup"} </Button>
-        
-         {
-          showSignForm ? <SignupForm /> : <LoginForm />
-         } 
-         
-        
-        <div></div>
+            {
+              showSignForm ? <SignupForm /> : <LoginForm />
+            } 
         </Route>
-        <Route path="/uploadpage" component={UploadPage} />
-        
+
+
+        <div>
+          <Route path="/uploadpage" component={UploadPage} />
+        </div>
+
         </div>
       </Switch>
    
