@@ -2,4 +2,3 @@ twilio:
   account_sid: ACbcce5be85f800ad97bebb94992ca8769
   auth_token: d9a9c60f42e8fe163723c6a0603c72af
   trial_number: +13018885126
-  sms_webhook: http://e74f49638832.jp.ngrok.io/sms/
