@@ -1,4 +1,4 @@
-package com.example.HackEdu;
+package com.example.HackEdu.Twilio;
 
 import com.twilio.Twilio;
 import org.slf4j.Logger;
@@ -7,18 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class TwilioInitiazer {
+public class TwilioInitializer {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(TwilioInitiazer.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(TwilioInitializer.class);
+
     private final TwilioConfiguration twilioConfiguration;
 
     @Autowired
-    public TwilioInitiazer(TwilioConfiguration twilioConfiguration) {
+    public TwilioInitializer(TwilioConfiguration twilioConfiguration) {
         this.twilioConfiguration = twilioConfiguration;
         Twilio.init(
                 twilioConfiguration.getAccountSid(),
                 twilioConfiguration.getAuthToken()
         );
-        LOGGER.info("Twilio initialized with account sid {} ", twilioConfiguration.getAccountSid());
+        LOGGER.info("Twilio initialized ... with account sid {} ", twilioConfiguration.getAccountSid());
     }
 }
