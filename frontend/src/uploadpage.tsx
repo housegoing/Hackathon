@@ -15,8 +15,23 @@ import UpAudio from './components/UpAudio';
 import UploadHistory from './components/UploadHistry';
 
 
-const UploadPage = () => {
+const useStyles = makeStyles((theme) => ({
+    upload: {
+      display: 'flex',
+      flexGrow: 1,
+      height: '100vh',
+      overflow: 'auto',
+      maxWidth: '800px',
+      float: 'left',
+    },
+    signupButton: {
+      height: '70px',
+      width: '200px',
+    },
+  }));
 
+const UploadPage = () => {
+    const classes = useStyles();
     const [upText, setUpText] = React.useState(false);
     const [upAudio, setUpAudio] = React.useState(false);
     const [showHistory, setShowHistory] = React.useState(false);
@@ -24,11 +39,13 @@ const UploadPage = () => {
     const uploadText = () => {
         setUpText(!upText);
         setUpAudio(upAudio ? !upAudio : upAudio);
+        setShowHistory(showHistory ? !showHistory : showHistory);
     }
 
     const uploadAudio = () => {
         setUpAudio(!upAudio);
         setUpText(upText ? !upText : upText);
+        setShowHistory(showHistory ? !showHistory : showHistory);
     }
 
     const cancelText = () => {
@@ -42,6 +59,8 @@ const UploadPage = () => {
 
     const getUploadHistory = () => {
         setShowHistory(!showHistory);
+        setUpAudio(upAudio ? !upAudio : upAudio);
+        setUpText(upText ? !upText : upText);
     }
 
     const closeUploadHistory = () => {
@@ -50,36 +69,36 @@ const UploadPage = () => {
 
 
     return (
-        <div>
+        <div className={classes.upload}>
             {
                 showHistory 
                 ? <UploadHistory></UploadHistory>
-                : <Button onClick={getUploadHistory}>Upload History</Button>
+                : <Button className={classes.signupButton} onClick={getUploadHistory}>Upload History</Button>
             }
             {
                 showHistory 
-                ? <Button onClick={closeUploadHistory}>Close</Button>
+                ? <Button className={classes.signupButton} onClick={closeUploadHistory}>Close</Button>
                 : <Typography></Typography>
             }
             {
                 upText 
                 ? <UpVideo></UpVideo>
-                :  <Button onClick={uploadText}>Text</Button>
+                :  <Button className={classes.signupButton} onClick={uploadText}>Text</Button>
             }
             {
                 upText 
-                ? <Button onClick={cancelText}>cancel</Button>
+                ? <Button className={classes.signupButton} onClick={cancelText}>cancel</Button>
                 :  <text></text>
             }
             {
                    
                 upAudio
                 ? <UpAudio></UpAudio>
-                :  <Button onClick={uploadAudio}>Audio</Button>
+                :  <Button className={classes.signupButton} onClick={uploadAudio}>Audio</Button>
             }
             {
                 upAudio 
-                ? <Button onClick={cancelAudio}>cancel</Button>
+                ? <Button className={classes.signupButton} onClick={cancelAudio}>cancel</Button>
                 :  <text></text>
             }
                 

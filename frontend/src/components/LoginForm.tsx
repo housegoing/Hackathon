@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     width: '25ch',
   },
+  loginform1: {
+    float: 'left',
+  }
 }));
 
 export const LoginForm = () => {
@@ -48,6 +51,7 @@ export const LoginForm = () => {
     <React.Fragment>
       <CssBaseline />
       <form>
+        <div className={classes.loginform1}>
         <TextField
           className={classes.textField}
           error={emailError}
@@ -84,7 +88,9 @@ export const LoginForm = () => {
         >
           {signupText}
         </Button>
+        </div>
       </form>
+
     </React.Fragment>
   );
 };

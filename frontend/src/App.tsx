@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    maxWidth: '2000px',
+    width: '2000px',
   },
   signupButton: {
     height: '70px',
@@ -52,7 +52,7 @@ function AppRouter() {
          } 
          
         
-        
+        <div></div>
         </Route>
         <Route path="/uploadpage" component={UploadPage} />
         
