@@ -24,7 +24,7 @@ public class LearningHistory {
     private Video video;
 
     @ManyToOne
-    @JoinColumn(name = "users_id", referencedColumnName = "ID")
+    @JoinColumn(name = "users_id")
     private User user;
 
     public LearningHistory() {

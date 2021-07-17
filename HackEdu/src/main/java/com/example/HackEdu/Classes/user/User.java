@@ -31,7 +31,7 @@ public class User {
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
     private List<LearningHistory> learningHistoryList;
 
-    public User(Long id, String phoneNumber, String firstName, String lastName, String state) {
+    public User(Long id, String phoneNumber, String firstName, String lastName) {
         this.id = id;
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
