@@ -14,7 +14,8 @@ public class LearningHistory {
     private LocalDate dateAccess;
     private String contentId;
 
-    @OneToOne(mappedBy = "learningHistory")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "users_id")
     private User user;
 
     public LearningHistory(LocalDate dateAccess, String contentId, User user) {

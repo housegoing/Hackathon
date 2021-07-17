@@ -6,5 +6,6 @@ public class Article {
     private String id;
     private String name;
     private String content;
+
     private Publisher publisher;
 }

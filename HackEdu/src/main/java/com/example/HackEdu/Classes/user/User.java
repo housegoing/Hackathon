@@ -20,7 +20,7 @@ public class User {
             strategy = GenerationType.SEQUENCE,
             generator = "user_sequence"
     )
-    @Column(updatable = false)
+    @Column(updatable = false, name="users_id")
     private Long id;
 
     @Column(nullable = false, name = "phone_number")
@@ -29,8 +29,7 @@ public class User {
     private String lastName;
     private String state;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "his_id")
+    @OneToOne(mappedBy = "user")
     private LearningHistory learningHistory;
 
     public User(Long id, String phoneNumber, String firstName, String lastName, String state, LearningHistory learningHistory) {
