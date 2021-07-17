@@ -1,5 +1,4 @@
-package com.example.HackEdu;
-
+package com.example.HackEdu.Twilio;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,6 +11,7 @@ public class TwilioConfiguration {
     private String trialNumber;
 
     public TwilioConfiguration() {
+
     }
 
     public String getAccountSid() {
