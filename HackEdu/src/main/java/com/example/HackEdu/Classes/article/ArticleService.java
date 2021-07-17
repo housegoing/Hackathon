@@ -24,6 +24,6 @@ public class ArticleService {
         if(!courseOptional.isPresent()){
             throw new IllegalStateException("Course not exist");
         }
-        return articleRepository.findArticleByCourse(courseOptional);
+        return articleRepository.findArticleByCourse(courseOptional.get());
     }
 }
