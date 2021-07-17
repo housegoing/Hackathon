@@ -11,12 +11,20 @@ import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import Tooltip from '@material-ui/core/Tooltip';
 import TextField from '@material-ui/core/TextField';
+import { classicNameResolver } from 'typescript';
 
-
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '900px',
+    },
+}));
 
 const UpVideo = () => {
+    const classes = useStyles();
+
+
     return (
-        <div>
+        <div className={classes.root}>
             <TextField
                 id="TextTitle"
                 label="title"
@@ -27,6 +35,7 @@ const UpVideo = () => {
                 autoFocus
                 
             />
+            <br/>
             <TextField
                 id="textContext"
                 label="context"

@@ -1,7 +1,5 @@
 import React from 'react';
-import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 
@@ -9,7 +7,7 @@ import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm';
 import UploadPage from './uploadpage';
 
-import { useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 
@@ -20,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    maxWidth: '2000px',
+    width: '2000px',
+    flexDirection: "column",
   },
   signupButton: {
     height: '70px',
@@ -31,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 
 function AppRouter() {
   const classes = useStyles();
-  const history = useHistory();
   const [showSignForm, setShowSignForm] = React.useState(false);
   const [logedin, setLogedin] = React.useState(false);
   
@@ -44,18 +42,19 @@ function AppRouter() {
     <Router>
       <Switch>
         <div className={classes.root}>
+          
         <Route path="/">
           <Button className={classes.signupButton} onClick={showSignup} > {showSignForm ? "login" : "signup"} </Button>
-        
-         {
-          showSignForm ? <SignupForm /> : <LoginForm />
-         } 
-         
-        
-        
+            {
+              showSignForm ? <SignupForm /> : <LoginForm />
+            } 
         </Route>
-        <Route path="/uploadpage" component={UploadPage} />
-        
+
+
+        <div>
+          <Route path="/uploadpage" component={UploadPage} />
+        </div>
+
         </div>
       </Switch>
    

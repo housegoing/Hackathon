@@ -12,6 +12,8 @@ public class Course {
     @Id
     @GeneratedValue()
     private Long id;
+
+    @Column(name = "topic", unique = true)
     private String topic;
 
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "course")

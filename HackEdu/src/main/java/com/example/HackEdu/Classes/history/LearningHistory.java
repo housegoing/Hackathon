@@ -30,6 +30,13 @@ public class LearningHistory {
     public LearningHistory() {
     }
 
+    public LearningHistory(LocalDate dateAccess, Article article, Video video, User user) {
+        this.dateAccess = dateAccess;
+        this.article = article;
+        this.video = video;
+        this.user = user;
+    }
+
     public LearningHistory(Long id, LocalDate dateAccess, Article article, Video video, User user) {
         this.id = id;
         this.dateAccess = dateAccess;

@@ -18,15 +18,27 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 const UploadHistory = () => {
 
-    const [uploadHistory, setuploadHistory] = React.useState();
+    const [uploadHistory, setuploadHistory] = React.useState([]);
+
+    const fetchUploadHistory = async () => {
+        // const responce = await fetch(`http://...`);
+        // const data = await response.json();
+        // console.log(data.hits). // for test
+        // setuploadHistory(data.hits);
+    }
+
 
     React.useEffect(() => {
+        // fetchUploadHistory();
         // fetch history data
     }, []);
 
     return (
         <div>
-            <text>Upload History here</text>
+            <h3>Upload History</h3>
+            {uploadHistory.map(oneRecord => (
+                <text>a record</text>
+            )) }
         </div>
     );
 }

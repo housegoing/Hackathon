@@ -2,13 +2,14 @@ package com.example.HackEdu.Classes.publisher;
 
 import com.example.HackEdu.Classes.article.Article;
 import com.example.HackEdu.Classes.video.Video;
-
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+//import org.springframework.security.
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table
-public class Publisher {
+public class Publisher implements UserDetailsServiceAutoConfiguration {
 
     @Id
     @GeneratedValue()
