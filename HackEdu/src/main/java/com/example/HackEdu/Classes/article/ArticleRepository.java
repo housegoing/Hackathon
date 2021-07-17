@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
-    List<Article> findArticleByCourse(Optional<Course> course);
+    List<Article> findArticleByCourse(Course course);
 }
