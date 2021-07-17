@@ -14,10 +14,10 @@ public class Course {
     private Long id;
     private String topic;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "course")
     private List<Video> videoList;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "course")
     private List<Article> articleList;
 
     public Course() {

@@ -16,15 +16,15 @@ public class LearningHistory {
     private LocalDate dateAccess;
 
     @ManyToOne
-    @JoinColumn(name = "article_id")
+    @JoinColumn(name = "article_id", referencedColumnName = "ID")
     private Article article;
 
     @ManyToOne
-    @JoinColumn(name = "video_id")
+    @JoinColumn(name = "video_id", referencedColumnName = "ID")
     private Video video;
 
     @ManyToOne
-    @JoinColumn(name = "users_id")
+    @JoinColumn(name = "users_id", referencedColumnName = "ID")
     private User user;
 
     public LearningHistory() {

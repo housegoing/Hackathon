@@ -19,10 +19,10 @@ public class Publisher {
     private String firstName;
     private String lastName;
 
-    @OneToMany(mappedBy = "publisher")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "publisher")
     private List<Article> articleList;
 
-    @OneToMany(mappedBy = "publisher")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "publisher")
     private List<Video> videoList;
     public Publisher() {
     }

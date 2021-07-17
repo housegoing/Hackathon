@@ -28,7 +28,7 @@ public class User {
     private String firstName;
     private String lastName;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
     private List<LearningHistory> learningHistoryList;
 
     public User(Long id, String phoneNumber, String firstName, String lastName, String state) {
