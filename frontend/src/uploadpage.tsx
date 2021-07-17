@@ -23,10 +23,12 @@ const UploadPage = () => {
 
     const uploadText = () => {
         setUpText(!upText);
+        setUpAudio(upAudio ? !upAudio : upAudio);
     }
 
     const uploadAudio = () => {
         setUpAudio(!upAudio);
+        setUpText(upText ? !upText : upText);
     }
 
     const cancelText = () => {
