@@ -42,19 +42,22 @@ function AppRouter() {
   }
   
   const afterLogin = () => {
-    history.push('./components/signupform');
+    history.push('/uploadpage');
 
   }
 
   return (
-    <div className={classes.root}>
-    <Button onClick={showSignup} > {buttonContext} </Button>
-    {
-      showSignForm ? <SignupForm /> : <LoginForm />
-    }
+    <BrowserRouter>
+      <div className={classes.root}>
+      <Button onClick={showSignup} > {buttonContext} </Button>
+      {
+        showSignForm ? <SignupForm /> : <LoginForm />
+      }
+      
+      <Button onClick={afterLogin} > afterLogin </Button>
+      </div>
+    </BrowserRouter>
     
-    <Button onClick={afterLogin} > afterLogin </Button>
-    </div>
     
   );
 }
