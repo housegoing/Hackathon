@@ -10,15 +10,22 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    margin: theme.spacing(1, 0, 1),
+    margin: theme.spacing(1.5, 1, 1),
+    paddingTop: '10px',
+    marginRight: theme.spacing(60),
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
+  textField1: {
+    marginLeft: theme.spacing(90),
+    marginRight: theme.spacing(2),
+    width: '25ch',
+  },
+  textField2: {
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(4),
     width: '25ch',
   },
   loginform1: {
-    float: 'left',
+    width: '1800px',
   }
 }));
 
@@ -53,7 +60,7 @@ export const LoginForm = () => {
       <form>
         <div className={classes.loginform1}>
         <TextField
-          className={classes.textField}
+          className={classes.textField1}
           error={emailError}
           inputRef={emailRef}
           label="Email"
@@ -65,7 +72,7 @@ export const LoginForm = () => {
           disabled={loading}
         />
         <TextField
-          className={classes.textField}
+          className={classes.textField2}
           error={passwordError}
           inputRef={passwordRef}
           label="Password"

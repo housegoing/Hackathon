@@ -12,11 +12,22 @@ import Hidden from '@material-ui/core/Hidden';
 import Tooltip from '@material-ui/core/Tooltip';
 
 
-
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '700px',
+    },
+    title: {
+        width: '700px',
+        height: '70px',
+        paddingTop: '20px',
+        paddingLeft: '250px',
+    },
+}));
 
 
 
 const UploadHistory = () => {
+    const classes = useStyles();
 
     const [uploadHistory, setuploadHistory] = React.useState([]);
 
@@ -34,11 +45,25 @@ const UploadHistory = () => {
     }, []);
 
     return (
-        <div>
-            <h3>Upload History</h3>
+        <div className={classes.root}>
+
+            <div className={classes.title}>
+                <h3>Upload History</h3>
+            </div>
+            
             {uploadHistory.map(oneRecord => (
                 <text>a record</text>
             )) }
+            <div>
+                <Typography>
+                    My first contrubution
+                </Typography>
+            </div>
+            <div>
+                <Typography>
+                    My second contrubution
+                </Typography>
+            </div>
         </div>
     );
 }

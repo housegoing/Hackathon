@@ -17,6 +17,13 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: '900px',
     },
+    title: {
+        width: '700px',
+        height: '70px',
+        paddingTop: '20px',
+        paddingLeft: '350px',
+
+    },
 }));
 
 const UpVideo = () => {
@@ -25,6 +32,11 @@ const UpVideo = () => {
 
     return (
         <div className={classes.root}>
+
+            <div className={classes.title}>
+                <h2>uploading Text</h2>
+            </div>
+            
             <TextField
                 id="TextTitle"
                 label="title"
@@ -47,7 +59,7 @@ const UpVideo = () => {
                 multiline
                 rows={20}
             />
-            <Button>upload</Button>
+            <Button variant="outlined">upload</Button>
         </div>
     );
 }
