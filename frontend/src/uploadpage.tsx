@@ -69,7 +69,9 @@ const UploadPage = () => {
 
 
     return (
+
         <div className={classes.upload}>
+            
             {
                 showHistory 
                 ? <UploadHistory></UploadHistory>

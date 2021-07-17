@@ -27,11 +27,12 @@ export const SignupForm = () => {
     const passwordRef = React.createRef<HTMLInputElement>();
     const nameRef = React.createRef<HTMLInputElement>();
     const [error, setError] = React.useState(' ');
-    const [nameError, setNameError] = React.useState(false);
+    const [firstNameError, setFirstNameError] = React.useState(false);
+    const [lastNameError, setLastNameError] = React.useState(false);
     const [emailError, setEmailError] = React.useState(false);
     const [passwordError, setPasswordError] = React.useState(false);
     const [signupText, setSignupText] = React.useState('Signup');
-    const [loading, setLoading] = React.useState(false);
+    
   
     const handleSignUp = () => {
         console.log("signup...");
@@ -45,7 +46,7 @@ export const SignupForm = () => {
         <form>
           <TextField
             className={classes.textField}
-            error={nameError}
+            error={firstNameError}
             inputRef={nameRef}
             label="First Name"
             required
@@ -56,7 +57,7 @@ export const SignupForm = () => {
           />
           <TextField
             className={classes.textField}
-            error={nameError}
+            error={lastNameError}
             inputRef={nameRef}
             label="Last Name"
             required
@@ -75,7 +76,7 @@ export const SignupForm = () => {
             size="small"
             variant="outlined"
             margin="normal"
-            disabled={loading}
+            
           />
           <TextField
             className={classes.textField}
@@ -87,7 +88,7 @@ export const SignupForm = () => {
             size="small"
             variant="outlined"
             margin="normal"
-            disabled={loading}
+            
             onKeyDown={handleSignUp}
           />
           <Button
@@ -97,7 +98,7 @@ export const SignupForm = () => {
             color="primary"
             className={classes.button}
             onClick={handleSignUp}
-            disabled={loading}
+            
           >
             {signupText}
           </Button>

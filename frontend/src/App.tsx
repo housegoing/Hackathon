@@ -44,15 +44,18 @@ function AppRouter() {
     <Router>
       <Switch>
         <div className={classes.root}>
+          
         <Route path="/">
           <Button className={classes.signupButton} onClick={showSignup} > {showSignForm ? "login" : "signup"} </Button>
         
          {
           showSignForm ? <SignupForm /> : <LoginForm />
          } 
-         
+         <br/>
         
-        <div></div>
+        
+          
+        
         </Route>
         <Route path="/uploadpage" component={UploadPage} />
         
