@@ -1,11 +1,30 @@
 package com.example.HackEdu.Classes.publisher;
 
-public class Publisher {
+import com.example.HackEdu.Classes.article.Article;
+import com.example.HackEdu.Classes.video.Video;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+//import org.springframework.security.
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+@Table
+public class Publisher implements UserDetailsServiceAutoConfiguration {
+
+    @Id
+    @GeneratedValue()
+    private Long id;
+
+    @Column(nullable = false)
     private String email;
     private String firstName;
     private String lastName;
 
+    @OneToMany(mappedBy = "publisher")
+    private List<Article> articleList;
+
+    @OneToMany(mappedBy = "publisher")
+    private List<Video> videoList;
     public Publisher() {
     }
 
@@ -38,4 +57,6 @@ public class Publisher {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+
 }
