@@ -8,8 +8,6 @@ class HackEduControllerTest {
 
     @Test
     void hello() {
-        HackEduController hackEduController = new HackEduController();
-        String response = hackEduController.hello();
-        assertEquals("Hello", response);
+
     }
 }
