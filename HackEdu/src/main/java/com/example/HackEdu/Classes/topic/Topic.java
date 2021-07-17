@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Topic {
 
-    private String ID;
+    private Long ID;
     private String topicName;
     private List<Course> courseList;
 
@@ -15,13 +15,13 @@ public class Topic {
         this.courseList = courseList;
     }
 
-    public Topic(String ID, String topicName, List<Course> courseList) {
+    public Topic(Long ID, String topicName, List<Course> courseList) {
         this.ID = ID;
         this.topicName = topicName;
         this.courseList = courseList;
     }
 
-    public String getID() {
+    public Long getID() {
         return ID;
     }
 
@@ -33,7 +33,7 @@ public class Topic {
         return courseList;
     }
 
-    public void setID(String ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 
