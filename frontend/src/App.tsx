@@ -6,10 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm';
 import UploadPage from './uploadpage';
+import publisherDetail from './service/userService';
+import userService from './service/userService';
+import axios, {AxiosResponse} from 'axios';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,11 +38,29 @@ function AppRouter() {
   const classes = useStyles();
   const [showSignForm, setShowSignForm] = React.useState(false);
   const [logedin, setLogedin] = React.useState(false);
-  
+  const [publishers, setPublishers] = React.useState<publisherDetail[]>([]);
+  const Publisher_URL = "http://localhost:8080/addPublisher";
+
   const showSignup = () => {
     setShowSignForm(!showSignForm);
   }
+
+  interface publisherDetail {
+    email: string,
+    FirstName: string,
+    lastName: string,
   
+  };
+  
+
+
+  React.useEffect(() =>  {
+    axios.get<publisherDetail[]>(Publisher_URL).then((response : AxiosResponse) => {
+      setPublishers(response.data);
+      console.log("response:", response.data);
+    })
+  }, []);
+
   
   return (
     <Router>
@@ -50,7 +69,7 @@ function AppRouter() {
           
         <Route path="/">
           <div className={classes.buttonDiv}>
-            <Button className={classes.signupButton} onClick={showSignup} > {showSignForm ? "login" : "signup"} </Button>
+            <Button className={classes.signupButton} onClick={showSignup} > {showSignForm ? "go login" : "go signup"} </Button>
           </div>
           
           {

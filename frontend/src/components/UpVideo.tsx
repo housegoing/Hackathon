@@ -1,17 +1,8 @@
 import React from 'react';
-import clsx from 'clsx';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Hidden from '@material-ui/core/Hidden';
-import Tooltip from '@material-ui/core/Tooltip';
 import TextField from '@material-ui/core/TextField';
-import { classicNameResolver } from 'typescript';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,7 +19,21 @@ const useStyles = makeStyles((theme) => ({
 
 const UpVideo = () => {
     const classes = useStyles();
+    const titleRef = React.createRef<HTMLInputElement>();
+    const linkRef = React.createRef<HTMLInputElement>();
+    const URL = "";
 
+    const submitText = () => {
+        try {
+            console.log("signup...");
+            axios.post(URL, {
+                  "link": titleRef.current?.value,
+                  "name": linkRef.current?.value,
+              });
+          } catch (error) {
+            console.log("error");
+          }
+    }
 
     return (
         <div className={classes.root}>
@@ -40,6 +45,7 @@ const UpVideo = () => {
             <TextField
                 id="TextTitle"
                 label="title"
+                inputRef={titleRef}
                 required
                 variant="outlined"
                 margin="normal"
@@ -51,6 +57,7 @@ const UpVideo = () => {
             <TextField
                 id="textContext"
                 label="context"
+                inputRef={linkRef}
                 required
                 variant="outlined"
                 margin="normal"
@@ -59,7 +66,7 @@ const UpVideo = () => {
                 multiline
                 rows={20}
             />
-            <Button variant="outlined">upload</Button>
+            <Button variant="outlined" onClick={submitText}>upload</Button>
         </div>
     );
 }

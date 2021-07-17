@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
+import axios, {AxiosResponse} from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +26,23 @@ const useStyles = makeStyles((theme) => ({
 
 const UpAudio = () => {
     const classes = useStyles();
+    const titleRef = React.createRef<HTMLInputElement>();
+    const linkRef = React.createRef<HTMLInputElement>();
+    const URL = "";
+
+    const submitAudio = () => {
+        try {
+            console.log("signup...");
+            axios.post(URL, {
+                  "link": titleRef.current?.value,
+                  "name": linkRef.current?.value,
+              });
+          } catch (error) {
+            console.log("error");
+          }
+    }
+
+
 
     return (
         <div className={classes.root}>
@@ -39,6 +56,7 @@ const UpAudio = () => {
             <TextField
                 id="AudioTitle"
                 label="title"
+                inputRef={titleRef}
                 required
                 fullWidth
                 variant="outlined"
@@ -47,6 +65,7 @@ const UpAudio = () => {
             <TextField
                 id="AudioLink"
                 label="link"
+                inputRef={linkRef}
                 required
                 fullWidth
                 variant="outlined"
@@ -54,7 +73,7 @@ const UpAudio = () => {
                 multiline
                 rows={5}
             />
-            <Button variant="outlined">upload</Button>
+            <Button variant="outlined" onClick={submitAudio}>upload</Button>
 
         </div>
     );
