@@ -27,22 +27,21 @@ public class User {
     private String phoneNumber;
     private String firstName;
     private String lastName;
-    private String state;
 
-    @OneToOne(mappedBy = "user")
-    private LearningHistory learningHistory;
+    @OneToMany(mappedBy = "user")
+    private List<LearningHistory> learningHistoryList;
 
-    public User(Long id, String phoneNumber, String firstName, String lastName, String state, LearningHistory learningHistory) {
+    public User(Long id, String phoneNumber, String firstName, String lastName, String state) {
         this.id = id;
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.state = state;
-        this.learningHistory = learningHistory;
+        this.learningHistoryList = null;
     }
 
     public User(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        this.learningHistoryList = null;
     }
 
     public User() {
@@ -81,20 +80,8 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public LearningHistory getLearningHistory() {
-        return learningHistory;
-    }
-
-    public void setLearningHistory(LearningHistory learningHistory) {
-        this.learningHistory = learningHistory;
+    public void addLearningHistory(LearningHistory learningHistory) {
+        this.learningHistoryList.add(learningHistory);
     }
 
     //    public void registerNewUser()

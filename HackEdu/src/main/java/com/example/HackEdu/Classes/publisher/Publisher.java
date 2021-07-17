@@ -1,11 +1,29 @@
 package com.example.HackEdu.Classes.publisher;
 
+import com.example.HackEdu.Classes.article.Article;
+import com.example.HackEdu.Classes.video.Video;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table
 public class Publisher {
 
+    @Id
+    @GeneratedValue()
+    private Long id;
+
+    @Column(nullable = false)
     private String email;
     private String firstName;
     private String lastName;
 
+    @OneToMany(mappedBy = "publisher")
+    private List<Article> articleList;
+
+    @OneToMany(mappedBy = "publisher")
+    private List<Video> videoList;
     public Publisher() {
     }
 
