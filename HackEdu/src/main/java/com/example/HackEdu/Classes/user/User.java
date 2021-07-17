@@ -1,4 +1,4 @@
-package com.example.HackEdu.Classes;
+package com.example.HackEdu.Classes.user;
 
 public class User {
 

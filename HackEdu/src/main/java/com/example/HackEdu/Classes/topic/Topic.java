@@ -1,4 +1,6 @@
-package com.example.HackEdu.Classes;
+package com.example.HackEdu.Classes.topic;
+
+import com.example.HackEdu.Classes.course.Course;
 
 import java.util.List;
 
