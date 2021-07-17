@@ -32,4 +32,28 @@ public class LearningHistory {
 
     public LearningHistory() {
     }
+
+    public LocalDate getDateAccess() {
+        return dateAccess;
+    }
+
+    public void setDateAccess(LocalDate dateAccess) {
+        this.dateAccess = dateAccess;
+    }
+
+    public String getContentId() {
+        return contentId;
+    }
+
+    public void setContentId(String contentId) {
+        this.contentId = contentId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
