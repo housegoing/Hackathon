@@ -1,20 +1,12 @@
 package com.example.HackEdu.Classes;
 
-public class User   {
+public class User {
 
     private String phoneNumber;
     private String firstName;
     private String lastName;
+    private String state;
 
     public User() {
     }
-
-    public User(String phoneNumber, String firstName, String lastName) {
-        this.phoneNumber = phoneNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-
-
 }
