@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import { FormHelperText } from '@material-ui/core';
 
 import { useHistory } from 'react-router-dom';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -28,10 +28,10 @@ export const LoginForm = () => {
   const [signupText, setSignupText] = React.useState('Login');
   const [loading, setLoading] = React.useState(false);
 
-  const handleLogin = () => {
+  function handleLogin() {
     console.log("login...");
     //try {
-      history.push('../uploadpage');
+      history.push("./uploadpage");
     // } catch (error) {
     //   console.log("error");
     // }
