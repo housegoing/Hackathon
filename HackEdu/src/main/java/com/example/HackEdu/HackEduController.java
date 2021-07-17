@@ -1,6 +1,4 @@
 package com.example.HackEdu;
-import com.example.HackEdu.Classes.publisher.Publisher;
-import com.example.HackEdu.Classes.publisher.PublisherService;
 import com.example.HackEdu.Twilio.SmsRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +9,11 @@ import javax.validation.Valid;
 public class HackEduController {
 
     private final Service service;
-    private final PublisherService publisherService;
+//    private final PublisherService publisherService;
 
     @Autowired
-    public HackEduController(Service service, PublisherService publisherService) {
+    public HackEduController(Service service) {
         this.service = service;
-        this.publisherService = publisherService;
     }
 
     @RequestMapping("/smsSender")
@@ -30,9 +27,9 @@ public class HackEduController {
         return body;
     }
 
-    @PostMapping("/addPublisher")
-    public void addPublisher(@RequestBody Publisher publisher) {
-        publisherService.addPublisher(publisher);
-        System.out.println("Added user");
-    }
+//    @PostMapping("/addPublisher")
+//    public void addPublisher(@RequestBody Publisher publisher) {
+//        publisherService.addPublisher(publisher);
+//        System.out.println("Added user");
+//    }
 }
