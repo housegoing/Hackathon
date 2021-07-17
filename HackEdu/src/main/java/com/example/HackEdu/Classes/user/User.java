@@ -3,6 +3,7 @@ package com.example.HackEdu.Classes.user;
 import com.example.HackEdu.Classes.history.LearningHistory;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "Users", uniqueConstraints = {
@@ -31,21 +32,12 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<LearningHistory> learningHistoryList;
 
-    public User(Long id, String phoneNumber, String firstName, String lastName, String state) {
-        this.id = id;
-        this.phoneNumber = phoneNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.learningHistoryList = null;
+    public User() {
     }
 
     public User(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        this.learningHistoryList = null;
-    }
-
-    public User() {
-
+        this.learningHistoryList = new ArrayList<>();
     }
 
     public Long getId() {

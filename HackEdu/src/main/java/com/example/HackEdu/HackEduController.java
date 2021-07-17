@@ -17,8 +17,9 @@ public class HackEduController {
     private UserService userService;
 
     @Autowired
-    public HackEduController(Service service) {
+    public HackEduController(Service service, UserService userService) {
         this.service = service;
+        this.userService = userService;
     }
 
     @RequestMapping("/smsSender")
