@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table
-public class Publisher implements UserDetailsServiceAutoConfiguration {
+public class Publisher {
 
     @Id
     @GeneratedValue()
