@@ -11,7 +11,7 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue()
-    private String id;
+    private Long id;
     private String topic;
 
     @OneToMany(mappedBy = "course")
@@ -19,4 +19,46 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private List<Article> articleList;
+
+    public Course() {
+    }
+
+    public Course(Long id, String topic, List<Video> videoList, List<Article> articleList) {
+        this.id = id;
+        this.topic = topic;
+        this.videoList = videoList;
+        this.articleList = articleList;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public List<Video> getVideoList() {
+        return videoList;
+    }
+
+    public void setVideoList(List<Video> videoList) {
+        this.videoList = videoList;
+    }
+
+    public List<Article> getArticleList() {
+        return articleList;
+    }
+
+    public void setArticleList(List<Article> articleList) {
+        this.articleList = articleList;
+    }
 }

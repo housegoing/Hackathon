@@ -7,18 +7,12 @@ import Button from '@material-ui/core/Button';
 
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm';
+import UploadPage from './uploadpage';
 
-import { useHistory } from 'react-router-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#1976d2',
-    },
-  },
-});
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +20,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
+    maxWidth: '2000px',
+  },
+  signupButton: {
+    height: '70px',
+    width: '200px',
   },
 }));
 
@@ -34,31 +33,34 @@ function AppRouter() {
   const classes = useStyles();
   const history = useHistory();
   const [showSignForm, setShowSignForm] = React.useState(false);
-  const [buttonContext, setButtonContext] = React.useState("Sign Up");
+  const [logedin, setLogedin] = React.useState(false);
   
   const showSignup = () => {
     setShowSignForm(!showSignForm);
-    setButtonContext(showSignForm ? "Login" : "Sign Up");
   }
   
-  const afterLogin = () => {
-    history.push('/uploadpage');
-
-  }
-
+  
   return (
-    <BrowserRouter>
-      <div className={classes.root}>
-      <Button onClick={showSignup} > {buttonContext} </Button>
-      {
-        showSignForm ? <SignupForm /> : <LoginForm />
-      }
+    <Router>
+      <Switch>
+        <div className={classes.root}>
+        <Route path="/">
+          <Button className={classes.signupButton} onClick={showSignup} > {showSignForm ? "login" : "signup"} </Button>
+        
+         {
+          showSignForm ? <SignupForm /> : <LoginForm />
+         } 
+         
+        
+        
+        </Route>
+        <Route path="/uploadpage" component={UploadPage} />
+        
+        </div>
+      </Switch>
+   
+    </Router>
       
-      <Button onClick={afterLogin} > afterLogin </Button>
-      </div>
-    </BrowserRouter>
-    
-    
   );
 }
 

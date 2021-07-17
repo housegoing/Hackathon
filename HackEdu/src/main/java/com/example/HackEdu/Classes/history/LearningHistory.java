@@ -26,4 +26,55 @@ public class LearningHistory {
     @ManyToOne
     @JoinColumn(name = "users_id")
     private User user;
+
+    public LearningHistory() {
+    }
+
+    public LearningHistory(Long id, LocalDate dateAccess, Article article, Video video, User user) {
+        this.id = id;
+        this.dateAccess = dateAccess;
+        this.article = article;
+        this.video = video;
+        this.user = user;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getDateAccess() {
+        return dateAccess;
+    }
+
+    public void setDateAccess(LocalDate dateAccess) {
+        this.dateAccess = dateAccess;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
+    public Video getVideo() {
+        return video;
+    }
+
+    public void setVideo(Video video) {
+        this.video = video;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
