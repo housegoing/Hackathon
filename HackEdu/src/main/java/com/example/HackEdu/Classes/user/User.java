@@ -2,7 +2,10 @@ package com.example.HackEdu.Classes.user;
 
 import javax.persistence.*;
 
-@Entity(name = "User")
+@Table(name = "User", uniqueConstraints = {
+        @UniqueConstraint(name = "users_phone_unique", columnNames = "phoneNumber")
+})
+@Entity(name = "Users")
 public class User {
     @Id
     @SequenceGenerator(
@@ -14,7 +17,9 @@ public class User {
             strategy = GenerationType.SEQUENCE,
             generator = "user_sequence"
     )
+    @Column(updatable = false)
     private Long id;
+    @Column(nullable = false)
     private String phoneNumber;
     private String firstName;
     private String lastName;
