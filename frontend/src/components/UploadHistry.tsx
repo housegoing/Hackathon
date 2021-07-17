@@ -1,0 +1,109 @@
+import React from 'react';
+import clsx from 'clsx';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import axios, {AxiosResponse} from 'axios';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '700px',
+        marginRight: '20px',
+    },
+    title: {
+        width: '700px',
+        height: '70px',
+        paddingTop: '20px',
+        paddingLeft: '250px',
+    },
+    record: {
+        width: '200px',
+        maxHeight: "200px",
+        margin: '10px',
+    },
+}));
+
+
+
+const UploadHistory = () => {
+    const classes = useStyles();
+    const URL = "";
+
+    const [uploadHistory, setuploadHistory] = React.useState<HistoryDetail[]>([]);
+
+    
+
+    interface HistoryDetail {
+        "title" : string;
+        "context" : string;
+    };
+
+    React.useEffect(() =>  {
+        axios.get<HistoryDetail[]>(URL).then((response : AxiosResponse) => {
+            setuploadHistory(response.data);
+            console.log("response:", response.data);
+        })
+    }, []);
+
+    return (
+        <div className={classes.root}>
+
+            <div className={classes.title}>
+                <h3>Upload History</h3>
+            </div>
+            <hr/>
+            {uploadHistory.map(oneRecord => (
+                <div className={classes.record}>
+                <div>
+                    <Typography>
+                        Title: {oneRecord.title}
+                    </Typography>
+
+                </div>
+                <div>
+                    <Typography> Context: {oneRecord.context}
+                    </Typography>
+                </div>
+                <hr/>
+            </div>
+            )) }
+            <div  className={classes.record}>
+                <div>
+                    <Typography>
+                        Title: {}
+                    </Typography>
+
+                </div>
+                
+                <div>
+                    <Typography> 
+                        Context: {}
+                    </Typography>
+                </div>
+                    
+            </div>
+            <hr/>
+            <div className={classes.record}>
+                <div>
+                    <Typography>
+                        Title: {}
+                    </Typography>
+
+                </div>
+                <div>
+                    <Typography> 
+                        Context: {}
+                    </Typography>
+                </div>
+            </div>
+            <hr/>
+        </div>
+    );
+}
+
+
+
+
+export default UploadHistory;

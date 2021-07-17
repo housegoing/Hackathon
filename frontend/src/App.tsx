@@ -1,24 +1,17 @@
 import React from 'react';
-import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
+import Typography from '@material-ui/core/Typography';
 
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm';
+import UploadPage from './uploadpage';
+import publisherDetail from './service/userService';
+import userService from './service/userService';
+import axios, {AxiosResponse} from 'axios';
 
-import { useHistory } from 'react-router-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#1976d2',
-    },
-  },
-});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,39 +19,82 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
+    width: '1800px',
+    flexDirection: "column",
   },
+  signupButton: {
+    height: '70px',
+    width: '200px',
+    
+  },
+  buttonDiv: {
+    width: '1500px',
+    paddingLeft: '830px',
+  }
 }));
 
 
 function AppRouter() {
   const classes = useStyles();
-  const history = useHistory();
   const [showSignForm, setShowSignForm] = React.useState(false);
-  const [buttonContext, setButtonContext] = React.useState("Sign Up");
-  
+  const [logedin, setLogedin] = React.useState(false);
+  const [publishers, setPublishers] = React.useState<publisherDetail[]>([]);
+  const Publisher_URL = "http://localhost:8080/addPublisher";
+
   const showSignup = () => {
     setShowSignForm(!showSignForm);
-    setButtonContext(showSignForm ? "Login" : "Sign Up");
   }
+
+  interface publisherDetail {
+    email: string,
+    FirstName: string,
+    lastName: string,
   
-  const afterLogin = () => {
-    history.push('/uploadpage');
+  };
+  
 
-  }
 
+  React.useEffect(() =>  {
+    axios.get<publisherDetail[]>(Publisher_URL).then((response : AxiosResponse) => {
+      setPublishers(response.data);
+      console.log("response:", response.data);
+    })
+  }, []);
+
+  
   return (
-    <BrowserRouter>
-      <div className={classes.root}>
-      <Button onClick={showSignup} > {buttonContext} </Button>
-      {
-        showSignForm ? <SignupForm /> : <LoginForm />
-      }
+    <Router>
+      <Switch>
+        <div className={classes.root}>
+          
+        <Route path="/">
+          <div className={classes.buttonDiv}>
+            <Button className={classes.signupButton} onClick={showSignup} > {showSignForm ? "go login" : "go signup"} </Button>
+          </div>
+          
+          {
+            logedin ? <Typography>dear volunteer, thank you for coming ^ _ ^ </Typography>
+            :
+            <div>
+            {
+              showSignForm ? <SignupForm /> : <LoginForm />
+            } 
+            </div>
+          }
+          
+            
+        </Route>
+        <hr/>
+
+        <div className={classes.root}>
+          <Route path="/uploadpage" component={UploadPage} />
+        </div>
+
+        </div>
+      </Switch>
+   
+    </Router>
       
-      <Button onClick={afterLogin} > afterLogin </Button>
-      </div>
-    </BrowserRouter>
-    
-    
   );
 }
 

@@ -6,30 +6,66 @@ import Button from '@material-ui/core/Button';
 import { FormHelperText } from '@material-ui/core';
 
 import { useHistory } from 'react-router-dom';
+import axios, {AxiosResponse} from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     button: {
-      margin: theme.spacing(1, 0, 1),
-    }
+      margin: theme.spacing(1.5, 1, 1),
+      paddingTop: '10px',
+    
+    },
+    textField1: {
+      marginLeft: theme.spacing(55),
+      marginRight: theme.spacing(1),
+      width: '25ch',
+    },
+    textField2: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: '25ch',
+    },
+    textField3: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: '25ch',
+    },
+    textField4: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: '25ch',
+    },
   }));
   
 
 export const SignupForm = () => {
     const classes = useStyles();
-    
+    const history = useHistory();
     
     const emailRef = React.createRef<HTMLInputElement>();
     const passwordRef = React.createRef<HTMLInputElement>();
-    const nameRef = React.createRef<HTMLInputElement>();
+    const firstnameRef = React.createRef<HTMLInputElement>();
+    const lastnameRef = React.createRef<HTMLInputElement>();
     const [error, setError] = React.useState(' ');
-    const [nameError, setNameError] = React.useState(false);
+    const [firstNameError, setFirstNameError] = React.useState(false);
+    const [lastNameError, setLastNameError] = React.useState(false);
     const [emailError, setEmailError] = React.useState(false);
     const [passwordError, setPasswordError] = React.useState(false);
     const [signupText, setSignupText] = React.useState('Signup');
-    const [loading, setLoading] = React.useState(false);
+    const Publisher_URL = "http://localhost:8080/addPublisher";
   
     const handleSignUp = () => {
-        console.log("signup...");
+        try {
+          console.log("signup...");
+          history.push("/uploadpage");
+          axios.post(Publisher_URL, {
+                "email": emailRef.current?.value,
+                "firstName": firstnameRef.current?.value,
+                "lastName": lastnameRef.current?.value,
+                "password": passwordRef.current?.value,
+              })
+        } catch (error) {
+          console.log("error");
+        }
     }
   
     return (
@@ -37,57 +73,60 @@ export const SignupForm = () => {
         <CssBaseline />
         <form>
           <TextField
-            error={nameError}
-            inputRef={nameRef}
+            className={classes.textField1}
+            error={firstNameError}
+            inputRef={firstnameRef}
             label="First Name"
             required
-            fullWidth
+            size="small"
             autoFocus
             variant="outlined"
             margin="normal"
           />
           <TextField
-            error={nameError}
-            inputRef={nameRef}
+            className={classes.textField2}
+            error={lastNameError}
+            inputRef={lastnameRef}
             label="Last Name"
             required
-            fullWidth
+            size="small"
             autoFocus
             variant="outlined"
             margin="normal"
           />
           <TextField
+            className={classes.textField3}
             error={emailError}
             inputRef={emailRef}
             label="Email"
             type="email"
             required
-            fullWidth
+            size="small"
             variant="outlined"
             margin="normal"
-            disabled={loading}
+            
           />
           <TextField
+            className={classes.textField4}
             error={passwordError}
             inputRef={passwordRef}
             label="Password"
             type="password"
             required
-            fullWidth
+            size="small"
             variant="outlined"
             margin="normal"
-            disabled={loading}
+            
             onKeyDown={handleSignUp}
           />
-          <FormHelperText error id="component-error-text">{error}</FormHelperText>
           <Button
             type="submit"
-            fullWidth
+            size="small"
             variant="contained"
             color="primary"
             className={classes.button}
             onClick={handleSignUp}
-            disabled={loading}
+            
           >
             {signupText}
           </Button>

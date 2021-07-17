@@ -1,5 +1,4 @@
 package com.example.HackEdu.Twilio;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,8 +9,10 @@ public class TwilioConfiguration {
     private String accountSid;
     private String authToken;
     private String trialNumber;
+    private String smsWebhook;
 
     public TwilioConfiguration() {
+
     }
 
     public String getAccountSid() {
@@ -30,11 +31,19 @@ public class TwilioConfiguration {
         this.authToken = authToken;
     }
 
-    public String getTrialNumber() {
-        return trialNumber;
+    public String getTrialNumber(){
+            return trialNumber;
     }
 
     public void setTrialNumber(String trialNumber) {
         this.trialNumber = trialNumber;
+    }
+
+    public String getSmsWebhook() {
+        return smsWebhook;
+    }
+
+    public void setSmsWebhook(String smsWebhook) {
+        this.smsWebhook = smsWebhook;
     }
 }
