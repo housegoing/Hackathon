@@ -7,6 +7,8 @@ import { FormHelperText } from "@material-ui/core";
 
 import { useHistory } from "react-router-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import axios, {AxiosResponse} from 'axios';
+
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -42,17 +44,39 @@ export const LoginForm = () => {
   const [passwordError, setPasswordError] = React.useState(false);
   const [signupText, setSignupText] = React.useState("Login");
   const [loading, setLoading] = React.useState(false);
+  const [publishers, setPublishers] = React.useState<publisherDetail[]>([]);
+  const Publisher_URL = "http://localhost:8080/addPublisher";
   
 
   function handleLogin() {
     console.log("login...");
-    //try {
-    history.push("/uploadpage");
-
-    // } catch (error) {
-    //   console.log("error");
-    // }
+    try {
+      history.push("/uploadpage");
+      for(var i = 0; i < publishers.length; i++) {
+        var obj = publishers[i];
+        if (obj["email"] == emailRef.current?.value && obj["FirstName"] == nameRef.current?.value ) {
+          console.log("login success")
+        }
+    }
+    } catch (error) {
+      console.log("error");
+    }
   }
+
+  interface publisherDetail {
+    email: string,
+    FirstName: string,
+    lastName: string,
+  
+  };
+
+  React.useEffect(() =>  {
+    axios.get<publisherDetail[]>(Publisher_URL).then((response : AxiosResponse) => {
+      setPublishers(response.data);
+      console.log("response:", response.data);
+    })
+  }, []);
+
 
   return (
     <React.Fragment>

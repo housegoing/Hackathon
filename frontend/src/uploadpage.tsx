@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
       height: '100vh',
       overflow: 'auto',
-      width: '2000px',
+      width: '1800px',
       
     },
     subUpload: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
       height: '100vh',
       overflow: 'auto',
-      
+      marginLeft: '30px',
     },
     historyButton: {
       height: '70px',
