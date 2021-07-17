@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
       height: '100vh',
       overflow: 'auto',
-      maxWidth: '800px',
+      maxWidth: '2000px',
       float: 'left',
     },
     signupButton: {
@@ -71,7 +71,7 @@ const UploadPage = () => {
     return (
 
         <div className={classes.upload}>
-            
+            <div>
             {
                 showHistory 
                 ? <UploadHistory></UploadHistory>
@@ -82,6 +82,8 @@ const UploadPage = () => {
                 ? <Button className={classes.signupButton} onClick={closeUploadHistory}>Close</Button>
                 : <Typography></Typography>
             }
+            </div>
+            <div>
             {
                 upText 
                 ? <UpVideo></UpVideo>
@@ -103,7 +105,7 @@ const UploadPage = () => {
                 ? <Button className={classes.signupButton} onClick={cancelAudio}>cancel</Button>
                 :  <text></text>
             }
-                
+            </div>
         </div>
     );
 

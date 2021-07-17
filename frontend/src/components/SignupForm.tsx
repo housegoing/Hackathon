@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const SignupForm = () => {
     const classes = useStyles();
-    
+    const history = useHistory();
     
     const emailRef = React.createRef<HTMLInputElement>();
     const passwordRef = React.createRef<HTMLInputElement>();
@@ -36,6 +36,7 @@ export const SignupForm = () => {
   
     const handleSignUp = () => {
         console.log("signup...");
+        history.push("/uploadpage");
     }
   
 
