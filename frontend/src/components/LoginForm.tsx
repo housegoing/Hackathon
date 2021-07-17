@@ -12,6 +12,11 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1, 0, 1),
   },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: '25ch',
+  },
 }));
 
 export const LoginForm = () => {
@@ -27,11 +32,13 @@ export const LoginForm = () => {
   const [passwordError, setPasswordError] = React.useState(false);
   const [signupText, setSignupText] = React.useState("Login");
   const [loading, setLoading] = React.useState(false);
+  
 
   function handleLogin() {
     console.log("login...");
     //try {
-    history.push("./uploadpage");
+    history.push("/uploadpage");
+
     // } catch (error) {
     //   console.log("error");
     // }
@@ -42,34 +49,33 @@ export const LoginForm = () => {
       <CssBaseline />
       <form>
         <TextField
+          className={classes.textField}
           error={emailError}
           inputRef={emailRef}
           label="Email"
           type="email"
           required
-          fullWidth
+          size="small"
           variant="outlined"
           margin="normal"
           disabled={loading}
         />
         <TextField
+          className={classes.textField}
           error={passwordError}
           inputRef={passwordRef}
           label="Password"
           type="password"
           required
-          fullWidth
+          size="small"
           variant="outlined"
           margin="normal"
           disabled={loading}
           onKeyDown={handleLogin}
         />
-        <FormHelperText error id="component-error-text">
-          {error}
-        </FormHelperText>
         <Button
           type="submit"
-          fullWidth
+          size="small"
           variant="contained"
           color="primary"
           className={classes.button}

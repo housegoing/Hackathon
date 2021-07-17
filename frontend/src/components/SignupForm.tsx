@@ -10,7 +10,12 @@ import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     button: {
       margin: theme.spacing(1, 0, 1),
-    }
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: '25ch',
+    },
   }));
   
 
@@ -32,57 +37,62 @@ export const SignupForm = () => {
         console.log("signup...");
     }
   
+
+
     return (
       <React.Fragment>
         <CssBaseline />
         <form>
           <TextField
+            className={classes.textField}
             error={nameError}
             inputRef={nameRef}
             label="First Name"
             required
-            fullWidth
+            size="small"
             autoFocus
             variant="outlined"
             margin="normal"
           />
           <TextField
+            className={classes.textField}
             error={nameError}
             inputRef={nameRef}
             label="Last Name"
             required
-            fullWidth
+            size="small"
             autoFocus
             variant="outlined"
             margin="normal"
           />
           <TextField
+            className={classes.textField}
             error={emailError}
             inputRef={emailRef}
             label="Email"
             type="email"
             required
-            fullWidth
+            size="small"
             variant="outlined"
             margin="normal"
             disabled={loading}
           />
           <TextField
+            className={classes.textField}
             error={passwordError}
             inputRef={passwordRef}
             label="Password"
             type="password"
             required
-            fullWidth
+            size="small"
             variant="outlined"
             margin="normal"
             disabled={loading}
             onKeyDown={handleSignUp}
           />
-          <FormHelperText error id="component-error-text">{error}</FormHelperText>
           <Button
             type="submit"
-            fullWidth
+            size="small"
             variant="contained"
             color="primary"
             className={classes.button}
