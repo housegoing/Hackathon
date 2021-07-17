@@ -44,6 +44,16 @@ const UpAudio = () => {
                 variant="outlined"
                 margin="normal"
             />
+            <TextField
+                id="AudioLink"
+                label="link"
+                required
+                fullWidth
+                variant="outlined"
+                margin="normal"
+                multiline
+                rows={5}
+            />
             <Button variant="outlined">upload</Button>
 
         </div>
