@@ -3,10 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Button from '@material-ui/core/Button';
-import { FormHelperText } from '@material-ui/core';
+
 
 import { useHistory } from 'react-router-dom';
-import axios, {AxiosResponse} from 'axios';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -45,7 +45,6 @@ export const SignupForm = () => {
     const passwordRef = React.createRef<HTMLInputElement>();
     const firstnameRef = React.createRef<HTMLInputElement>();
     const lastnameRef = React.createRef<HTMLInputElement>();
-    const [signupText, setSignupText] = React.useState('Signup');
     const Publisher_URL = "http://localhost:8080/addPublisher";
   
     const handleSignUp = () => {
@@ -68,62 +67,25 @@ export const SignupForm = () => {
         <CssBaseline />
         <form>
           <TextField
-            className={classes.textField1}
-            
-            inputRef={firstnameRef}
-            label="First Name"
-            required
-            size="small"
-            autoFocus
-            variant="outlined"
-            margin="normal"
+            className={classes.textField1} inputRef={firstnameRef} label="First Name" required size="small" autoFocus variant="outlined" margin="normal"
           />
           <TextField
-            className={classes.textField2}
-            
-            inputRef={lastnameRef}
-            label="Last Name"
-            required
-            size="small"
-            autoFocus
-            variant="outlined"
-            margin="normal"
+            className={classes.textField2} inputRef={lastnameRef} label="Last Name" required size="small" autoFocus variant="outlined" margin="normal"
           />
           <TextField
             className={classes.textField3}
-            
-            inputRef={emailRef}
-            label="Email"
-            type="email"
-            required
-            size="small"
-            variant="outlined"
-            margin="normal"
-            
+            inputRef={emailRef} label="Email" type="email" required size="small" variant="outlined" margin="normal"
           />
           <TextField
-            className={classes.textField4}
-            
-            inputRef={passwordRef}
-            label="Password"
-            type="password"
-            required
-            size="small"
-            variant="outlined"
-            margin="normal"
-            
+            className={classes.textField4} inputRef={passwordRef} label="Password" type="password" required size="small" variant="outlined" margin="normal"
             onKeyDown={handleSignUp}
           />
           <Button
-            type="submit"
-            size="small"
-            variant="contained"
-            color="primary"
+            type="submit" size="small" variant="contained" color="primary"
             className={classes.button}
             onClick={handleSignUp}
-            
           >
-            {signupText}
+            signup
           </Button>
         </form>
       </React.Fragment>

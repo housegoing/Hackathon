@@ -3,10 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Button from "@material-ui/core/Button";
-import { FormHelperText } from "@material-ui/core";
+
 
 import { useHistory } from "react-router-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import axios, {AxiosResponse} from 'axios';
 
 
@@ -34,11 +33,9 @@ const useStyles = makeStyles((theme) => ({
 export const LoginForm = () => {
   const classes = useStyles();
   const history = useHistory();
-
   const emailRef = React.createRef<HTMLInputElement>();
   const passwordRef = React.createRef<HTMLInputElement>();
   const nameRef = React.createRef<HTMLInputElement>();
-  const [signupText, setSignupText] = React.useState("Login");
   const [publishers, setPublishers] = React.useState<publisherDetail[]>([]);
   const Publisher_URL = "http://localhost:8080/addPublisher";
   
@@ -80,37 +77,18 @@ export const LoginForm = () => {
       <form>
         <div className={classes.loginform1}>
         <TextField
-          className={classes.textField1}
-          inputRef={emailRef}
-          label="Email"
-          type="email"
-          required
-          size="small"
-          variant="outlined"
-          margin="normal"
+          className={classes.textField1} inputRef={emailRef} label="Email" type="email" required size="small" variant="outlined" margin="normal"
         />
         <TextField
-          className={classes.textField2}
-          inputRef={passwordRef}
-          label="Password"
-          type="password"
-          required
-          size="small"
-          variant="outlined"
-          margin="normal"
+          className={classes.textField2} inputRef={passwordRef} label="Password" type="password" required size="small" variant="outlined" margin="normal"
           onKeyDown={handleLogin}
           
         />
         <Button
-          type="submit"
-          size="small"
-          variant="contained"
-          color="primary"
-          className={classes.button}
+          type="submit" size="small" variant="contained" color="primary" className={classes.button}
           onClick={handleLogin}
-          
         >
-          {signupText}
+          Login
         </Button>
         </div>
       </form>

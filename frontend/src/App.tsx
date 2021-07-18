@@ -6,8 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm';
 import UploadPage from './uploadpage';
-import publisherDetail from './service/userService';
-import userService from './service/userService';
 import axios, {AxiosResponse} from 'axios';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
