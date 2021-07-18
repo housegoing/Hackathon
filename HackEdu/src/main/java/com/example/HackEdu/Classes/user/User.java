@@ -73,5 +73,5 @@ public class User {
         this.learningHistoryList.add(learningHistory);
     }
 
-    // public void registerNewUser()
+// public void registerNewUser()
 }
