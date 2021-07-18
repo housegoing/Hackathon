@@ -3,6 +3,7 @@ import com.example.HackEdu.Classes.article.Article;
 import com.example.HackEdu.Classes.article.ArticleService;
 import com.example.HackEdu.Classes.course.Course;
 import com.example.HackEdu.Classes.course.CourseService;
+import com.example.HackEdu.Classes.history.LearningHistory;
 import com.example.HackEdu.Classes.user.User;
 import com.example.HackEdu.Classes.user.UserService;
 import com.example.HackEdu.Classes.video.Video;
@@ -46,7 +47,8 @@ public class HackEduController {
     @ResponseBody
     public String smsDispatch(@RequestParam("From") String from, @RequestParam("Body") String body){
         String phoneNumber = from.substring(1);
-        userService.addNewUser(new User(phoneNumber));
+        User user = new User(phoneNumber);
+        userService.addNewUser(user);
 
         String[] inputMsg = body.toLowerCase().split(" ");
 
@@ -132,10 +134,19 @@ public class HackEduController {
                 }
                 break;
             case "history":
-                responseMsg = "Haven't been implemented. Stay tuned!" + '\n';
+                if(userService.getLearningHistory(user).size() == 0){
+                    responseMsg = "No learning record!";
+                }else{
+                    responseMsg = "Your learning history" + '\n';
+                    for(LearningHistory h: userService.getLearningHistory(user)){
+                        if(h.getArticle() != null){
+                            responseMsg = responseMsg + "Article --- " + h.getArticle().getName() + " --- " + h.getArticle().getId();
+                        }else{
+                            responseMsg = responseMsg + "Video --- " + h.getVideo().getName() + " --- " + h.getVideo().getId();
+                        }
+                    }
+                }
                 break;
-
-
             default:
                 responseMsg = error;
                 break;
