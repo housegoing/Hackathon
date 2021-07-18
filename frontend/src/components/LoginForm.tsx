@@ -38,12 +38,7 @@ export const LoginForm = () => {
   const emailRef = React.createRef<HTMLInputElement>();
   const passwordRef = React.createRef<HTMLInputElement>();
   const nameRef = React.createRef<HTMLInputElement>();
-  const [error, setError] = React.useState(" ");
-  const [nameError, setNameError] = React.useState(false);
-  const [emailError, setEmailError] = React.useState(false);
-  const [passwordError, setPasswordError] = React.useState(false);
   const [signupText, setSignupText] = React.useState("Login");
-  const [loading, setLoading] = React.useState(false);
   const [publishers, setPublishers] = React.useState<publisherDetail[]>([]);
   const Publisher_URL = "http://localhost:8080/addPublisher";
   
@@ -51,15 +46,16 @@ export const LoginForm = () => {
   function handleLogin() {
     console.log("login...");
     try {
-      history.push("/uploadpage");
       for(var i = 0; i < publishers.length; i++) {
         var obj = publishers[i];
         if (obj["email"] == emailRef.current?.value && obj["FirstName"] == nameRef.current?.value ) {
-          console.log("login success")
+          console.log("login success");
+          alert("user not exsit or wrong password \nplease try again");
+          history.push("/uploadpage");
         }
     }
     } catch (error) {
-      console.log("error");
+      console.log("login error");
     }
   }
 
@@ -85,7 +81,6 @@ export const LoginForm = () => {
         <div className={classes.loginform1}>
         <TextField
           className={classes.textField1}
-          error={emailError}
           inputRef={emailRef}
           label="Email"
           type="email"
@@ -93,11 +88,9 @@ export const LoginForm = () => {
           size="small"
           variant="outlined"
           margin="normal"
-          disabled={loading}
         />
         <TextField
           className={classes.textField2}
-          error={passwordError}
           inputRef={passwordRef}
           label="Password"
           type="password"
@@ -105,8 +98,8 @@ export const LoginForm = () => {
           size="small"
           variant="outlined"
           margin="normal"
-          disabled={loading}
           onKeyDown={handleLogin}
+          
         />
         <Button
           type="submit"
@@ -115,7 +108,7 @@ export const LoginForm = () => {
           color="primary"
           className={classes.button}
           onClick={handleLogin}
-          disabled={loading}
+          
         >
           {signupText}
         </Button>

@@ -45,11 +45,6 @@ export const SignupForm = () => {
     const passwordRef = React.createRef<HTMLInputElement>();
     const firstnameRef = React.createRef<HTMLInputElement>();
     const lastnameRef = React.createRef<HTMLInputElement>();
-    const [error, setError] = React.useState(' ');
-    const [firstNameError, setFirstNameError] = React.useState(false);
-    const [lastNameError, setLastNameError] = React.useState(false);
-    const [emailError, setEmailError] = React.useState(false);
-    const [passwordError, setPasswordError] = React.useState(false);
     const [signupText, setSignupText] = React.useState('Signup');
     const Publisher_URL = "http://localhost:8080/addPublisher";
   
@@ -64,7 +59,7 @@ export const SignupForm = () => {
                 "password": passwordRef.current?.value,
               })
         } catch (error) {
-          console.log("error");
+          console.log("signup error: ",error);
         }
     }
   
@@ -74,7 +69,7 @@ export const SignupForm = () => {
         <form>
           <TextField
             className={classes.textField1}
-            error={firstNameError}
+            
             inputRef={firstnameRef}
             label="First Name"
             required
@@ -85,7 +80,7 @@ export const SignupForm = () => {
           />
           <TextField
             className={classes.textField2}
-            error={lastNameError}
+            
             inputRef={lastnameRef}
             label="Last Name"
             required
@@ -96,7 +91,7 @@ export const SignupForm = () => {
           />
           <TextField
             className={classes.textField3}
-            error={emailError}
+            
             inputRef={emailRef}
             label="Email"
             type="email"
@@ -108,7 +103,7 @@ export const SignupForm = () => {
           />
           <TextField
             className={classes.textField4}
-            error={passwordError}
+            
             inputRef={passwordRef}
             label="Password"
             type="password"

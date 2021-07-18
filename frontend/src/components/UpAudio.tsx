@@ -28,7 +28,7 @@ const UpAudio = () => {
     const classes = useStyles();
     const titleRef = React.createRef<HTMLInputElement>();
     const linkRef = React.createRef<HTMLInputElement>();
-    const URL = "";
+    const URL = "http://localhost:8080/addAudio";
 
     const submitAudio = () => {
         try {
@@ -37,9 +37,12 @@ const UpAudio = () => {
                   "link": titleRef.current?.value,
                   "name": linkRef.current?.value,
               });
+            alert("thank you for your uploading");
           } catch (error) {
-            console.log("error");
+            console.log("submit audio error");
+            alert("opps, something is going wrong");
           }
+
     }
 
 

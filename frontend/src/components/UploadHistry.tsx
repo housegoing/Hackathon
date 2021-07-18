@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const UploadHistory = () => {
     const classes = useStyles();
-    const URL = "";
+    const URL = "http://localhost:8080/getUploadHistory";
 
     const [uploadHistory, setuploadHistory] = React.useState<HistoryDetail[]>([]);
 
@@ -46,6 +46,8 @@ const UploadHistory = () => {
             console.log("response:", response.data);
         })
     }, []);
+
+    // return include 2 showing example
 
     return (
         <div className={classes.root}>

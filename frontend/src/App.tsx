@@ -69,7 +69,7 @@ function AppRouter() {
           
         <Route path="/">
           <div className={classes.buttonDiv}>
-            <Button className={classes.signupButton} onClick={showSignup} > {showSignForm ? "go login" : "go signup"} </Button>
+            <Button className={classes.signupButton} onClick={showSignup} > {showSignForm ? "go to login" : "go to signup"} </Button>
           </div>
           
           {
