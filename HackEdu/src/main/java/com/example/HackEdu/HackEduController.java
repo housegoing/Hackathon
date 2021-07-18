@@ -5,6 +5,8 @@ import com.example.HackEdu.Classes.course.Course;
 import com.example.HackEdu.Classes.course.CourseService;
 import com.example.HackEdu.Classes.user.User;
 import com.example.HackEdu.Classes.user.UserService;
+import com.example.HackEdu.Classes.video.Video;
+import com.example.HackEdu.Classes.video.VideoService;
 import com.example.HackEdu.Twilio.SmsRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +26,15 @@ public class HackEduController {
 
     private ArticleService articleService;
 
+    private VideoService videoService;
+
     @Autowired
-    public HackEduController(Service service, UserService userService, CourseService courseService, ArticleService articleService) {
+    public HackEduController(Service service, UserService userService, CourseService courseService, ArticleService articleService, VideoService videoService) {
         this.service = service;
         this.userService = userService;
         this.courseService = courseService;
         this.articleService = articleService;
+        this.videoService = videoService;
     }
 
     @RequestMapping("/smsSender")
@@ -55,6 +60,8 @@ public class HackEduController {
 
         String error = '\n' + "Invalid input! Type 'e-help' to get instructions.";
 
+        int content_offset = 0;
+
         switch(inputMsg[0]){
             case "e-help":
                 responseMsg = help;
@@ -77,8 +84,15 @@ public class HackEduController {
                             responseMsg = "You are viewing Topic " + courseService.getCourse().get(topicIndex-1).getTopic() +":" + '\n' +
                                     "Index --- Type --- Course" + '\n';
                             int count = 1;
-                            for(Article a: articleService.getArticalByTopic(courseService.getCourse().get(topicIndex-1).getTopic())){
-                                responseMsg = responseMsg + "  #" + String.valueOf(count) + "  ---  "+ "Article  ---  " + a.getName() + '\n';
+                            for(Article a: articleService.getArticalByTopic(courseService.getCourse().get(topicIndex-1).getTopic())) {
+                                responseMsg = responseMsg + "  #" + String.valueOf(count) + "  ---  " + "Article  ---  " + a.getName() + '\n';
+                                count = count + 1;
+                            }
+
+                            content_offset = count;
+
+                            for(Video v: videoService.getVideoByTopic(courseService.getCourse().get(topicIndex-1).getTopic())){
+                                responseMsg = responseMsg + "  #" + String.valueOf(count) + "  ---  "+ "video  ---  " + v.getName() + '\n';
                                 count = count + 1;
                             }
 
