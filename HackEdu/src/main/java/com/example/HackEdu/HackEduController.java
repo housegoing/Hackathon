@@ -6,8 +6,6 @@ import com.example.HackEdu.Classes.course.CourseService;
 import com.example.HackEdu.Classes.user.User;
 import com.example.HackEdu.Classes.user.UserService;
 import com.example.HackEdu.Twilio.SmsRequest;
-import com.twilio.twiml.MessagingResponse;
-import com.twilio.twiml.messaging.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +16,7 @@ import java.util.Locale;
 public class HackEduController {
 
     private final Service service;
+//    private final PublisherService publisherService;
 
     private UserService userService;
 
@@ -99,4 +98,9 @@ public class HackEduController {
         return responseMsg;
     }
 
+//    @PostMapping("/addPublisher")
+//    public void addPublisher(@RequestBody Publisher publisher) {
+//        publisherService.addPublisher(publisher);
+//        System.out.println("Added user");
+//    }
 }

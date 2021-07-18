@@ -14,12 +14,12 @@ public class Article {
     private String name;
     private String content;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "publisher_id")
+    @ManyToOne
+    @JoinColumn(name = "publisher_id", referencedColumnName = "ID")
     private Publisher publisher;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "course_id")
+    @ManyToOne
+    @JoinColumn(name = "course_id", referencedColumnName = "ID")
     private Course course;
 
     public Article() {

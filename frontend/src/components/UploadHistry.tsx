@@ -4,41 +4,101 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Hidden from '@material-ui/core/Hidden';
-import Tooltip from '@material-ui/core/Tooltip';
+import axios, {AxiosResponse} from 'axios';
 
 
-
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '700px',
+        marginRight: '20px',
+    },
+    title: {
+        width: '700px',
+        height: '70px',
+        paddingTop: '20px',
+        paddingLeft: '250px',
+    },
+    record: {
+        width: '200px',
+        maxHeight: "200px",
+        margin: '10px',
+    },
+}));
 
 
 
 const UploadHistory = () => {
+    const classes = useStyles();
+    const URL = "";
 
-    const [uploadHistory, setuploadHistory] = React.useState([]);
+    const [uploadHistory, setuploadHistory] = React.useState<HistoryDetail[]>([]);
 
-    const fetchUploadHistory = async () => {
-        // const responce = await fetch(`http://...`);
-        // const data = await response.json();
-        // console.log(data.hits). // for test
-        // setuploadHistory(data.hits);
-    }
+    
 
+    interface HistoryDetail {
+        "title" : string;
+        "context" : string;
+    };
 
-    React.useEffect(() => {
-        // fetchUploadHistory();
-        // fetch history data
+    React.useEffect(() =>  {
+        axios.get<HistoryDetail[]>(URL).then((response : AxiosResponse) => {
+            setuploadHistory(response.data);
+            console.log("response:", response.data);
+        })
     }, []);
 
     return (
-        <div>
-            <h3>Upload History</h3>
+        <div className={classes.root}>
+
+            <div className={classes.title}>
+                <h3>Upload History</h3>
+            </div>
+            <hr/>
             {uploadHistory.map(oneRecord => (
-                <text>a record</text>
+                <div className={classes.record}>
+                <div>
+                    <Typography>
+                        Title: {oneRecord.title}
+                    </Typography>
+
+                </div>
+                <div>
+                    <Typography> Context: {oneRecord.context}
+                    </Typography>
+                </div>
+                <hr/>
+            </div>
             )) }
+            <div  className={classes.record}>
+                <div>
+                    <Typography>
+                        Title: {}
+                    </Typography>
+
+                </div>
+                
+                <div>
+                    <Typography> 
+                        Context: {}
+                    </Typography>
+                </div>
+                    
+            </div>
+            <hr/>
+            <div className={classes.record}>
+                <div>
+                    <Typography>
+                        Title: {}
+                    </Typography>
+
+                </div>
+                <div>
+                    <Typography> 
+                        Context: {}
+                    </Typography>
+                </div>
+            </div>
+            <hr/>
         </div>
     );
 }

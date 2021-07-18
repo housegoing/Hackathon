@@ -2,6 +2,9 @@ package com.example.HackEdu;
 
 import com.example.HackEdu.Classes.article.Article;
 import com.example.HackEdu.Classes.article.ArticleRepository;
+import com.example.HackEdu.Classes.article.ArticleService;
+import com.example.HackEdu.Classes.course.Course;
+import com.example.HackEdu.Classes.course.CourseRepository;
 import com.example.HackEdu.Classes.history.LearningHistory;
 import com.example.HackEdu.Classes.history.LearningHistoryRepository;
 import com.example.HackEdu.Classes.user.User;
@@ -11,6 +14,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootApplication
 public class HackEduApplication implements CommandLineRunner {
@@ -28,21 +32,26 @@ public class HackEduApplication implements CommandLineRunner {
 	@Autowired
 	private ArticleRepository articleRepository;
 
+	@Autowired
+	private ArticleService articleService;
+
+	@Autowired
+	private CourseRepository courseRepository;
+
+
 	@Override
 	public void run(String... args) throws Exception {
-//		User user = new User("6112121212");
-//		user.setPhoneNumber("6112121212");
-//
-//		Article article = new Article();
-//		articleRepository.save(article);
-//
-//		LearningHistory learningHistory = new LearningHistory();
-//		learningHistory.setDateAccess(LocalDate.of(2021, 7, 17));
-//		learningHistory.setArticle(article);
-//
-//		learningHistory.setUser(user);
-//		userRepository.save(user);
-//		learningHistoryRepository.save(learningHistory);
+		Course course = new Course();
+		course.setTopic("Art");
+		courseRepository.save(course);
+		Article article = new Article();
+		article.setName("Test");
+		article.setCourse(course);
+		articleRepository.save(article);
+
+		List<Article> articleList = articleService.getArticalByTopic(course.getTopic());
+
+		articleList.forEach((n)->System.out.print(n.getName()));
 	}
 
 }

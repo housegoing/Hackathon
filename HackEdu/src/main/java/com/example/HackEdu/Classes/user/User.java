@@ -7,21 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "Users", uniqueConstraints = {
-        @UniqueConstraint(name = "users_phone_unique", columnNames = "phone_number")
-})
+        @UniqueConstraint(name = "users_phone_unique", columnNames = "phone_number") })
 @Entity(name = "Users")
 public class User {
     @Id
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
-    @Column(updatable = false, name="users_id")
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @Column(updatable = false, name = "users_id")
     private Long id;
 
     @Column(nullable = false, name = "phone_number")
@@ -29,10 +21,15 @@ public class User {
     private String firstName;
     private String lastName;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "user")
     private List<LearningHistory> learningHistoryList;
 
-    public User() {
+    public User(Long id, String phoneNumber, String firstName, String lastName) {
+        this.id = id;
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.learningHistoryList = null;
     }
 
     public User(String phoneNumber) {
@@ -76,5 +73,5 @@ public class User {
         this.learningHistoryList.add(learningHistory);
     }
 
-    //    public void registerNewUser()
+    // public void registerNewUser()
 }

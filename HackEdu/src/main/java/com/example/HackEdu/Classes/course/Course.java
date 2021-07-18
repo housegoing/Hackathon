@@ -16,10 +16,10 @@ public class Course {
     @Column(name = "topic", unique = true)
     private String topic;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "course")
     private List<Video> videoList;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "course")
     private List<Article> articleList;
 
     public Course() {
