@@ -56,11 +56,11 @@ public class HackEduController {
 
         String help = '\n' + "Welcome to HackEdu!" + '\n' +
                 "Use 'list topic' to explore your interested topics." + '\n' +
-                "Use 'list topicIndex course' to explore courses in your interested topic." + '\n';
+                "Use 'list topicIndex course' to explore courses in your interested topic." + '\n' +
+                "Once you get the content type and ID of the course you want, type 'start ContentType ContentID' to start learning" + '\n' +
+                "Use 'history' to show your learning history" + '\n';
 
         String error = '\n' + "Invalid input! Type 'e-help' to get instructions.";
-
-        int content_offset = 0;
 
         switch(inputMsg[0]){
             case "e-help":
@@ -80,19 +80,16 @@ public class HackEduController {
                         int topicIndex = Integer.parseInt(inputMsg[1].substring(1));
 
                         if(inputMsg[2].equals("course") && topicIndex > 0){
-                            //todo list all courses in that topic
                             responseMsg = "You are viewing Topic " + courseService.getCourse().get(topicIndex-1).getTopic() +":" + '\n' +
                                     "Index --- Type --- Course" + '\n';
                             int count = 1;
                             for(Article a: articleService.getArticalByTopic(courseService.getCourse().get(topicIndex-1).getTopic())) {
-                                responseMsg = responseMsg + "  #" + String.valueOf(count) + "  ---  " + "Article  ---  " + a.getName() + '\n';
+                                responseMsg = responseMsg + "#" + String.valueOf(count) + " --- " + "article --- " + a.getName() + " --- " + a.getId() + '\n';
                                 count = count + 1;
                             }
 
-                            content_offset = count;
-
                             for(Video v: videoService.getVideoByTopic(courseService.getCourse().get(topicIndex-1).getTopic())){
-                                responseMsg = responseMsg + "  #" + String.valueOf(count) + "  ---  "+ "video  ---  " + v.getName() + '\n';
+                                responseMsg = responseMsg + "#" + String.valueOf(count) + " --- " + "video --- " + v.getName() + " --- " + v.getId() + '\n';
                                 count = count + 1;
                             }
 
@@ -105,6 +102,40 @@ public class HackEduController {
                     }
                 }
                 break;
+            case "start":
+                try{
+                    long id =Long.parseLong(inputMsg[2]);
+                    responseMsg = "Wrong content ID" + '\n';
+                    if(inputMsg[1].equals("article")){
+                        for(Course c: courseService.getCourse()) {
+                            for(Article a: articleService.getArticalByTopic(c.getTopic())) {
+                                if(id == a.getId()){
+                                    responseMsg = "The article of your request is " + a.getName() + '\n';
+                                    responseMsg = responseMsg + a.getContent();
+                                }
+                            }
+                        }
+                    }else if(inputMsg[1].equals("video")){
+                        for(Course c: courseService.getCourse()) {
+                            for(Video v: videoService.getVideoByTopic(c.getTopic())) {
+                                if(id == v.getId()){
+                                    responseMsg = "The video of your request is " + v.getName() + '\n';
+                                    responseMsg = responseMsg + v.getLink();
+                                }
+                            }
+                        }
+                    }else{
+                        responseMsg = error;
+                    }
+                }catch (NumberFormatException ex){
+                    responseMsg = error;
+                }
+                break;
+            case "history":
+                responseMsg = "Haven't been implemented. Stay tuned!" + '\n';
+                break;
+
+
             default:
                 responseMsg = error;
                 break;
