@@ -39,7 +39,7 @@ function AppRouter() {
   const [showSignForm, setShowSignForm] = React.useState(false);
   const [logedin, setLogedin] = React.useState(false);
   const [publishers, setPublishers] = React.useState<publisherDetail[]>([]);
-  const Publisher_URL = "http://localhost:8080/addPublisher";
+  const Publisher_URL = "http://localhost:8081/api/v1/addPublisher";
 
   const showSignup = () => {
     setShowSignForm(!showSignForm);
@@ -54,13 +54,22 @@ function AppRouter() {
   
 
 
-  React.useEffect(() =>  {
-    axios.get<publisherDetail[]>(Publisher_URL).then((response : AxiosResponse) => {
-      setPublishers(response.data);
-      console.log("response:", response.data);
-    })
-  }, []);
+  // React.useEffect(() =>  {
+  //   axios.get<publisherDetail[]>(Publisher_URL).then((response : AxiosResponse) => {
+  //     setPublishers(response.data);
+  //     console.log("response:", response.data);
+  //   })
+  // }, []);
 
+  React.useEffect(() => {
+    axios.post(Publisher_URL, {
+      "firstName":"tom",
+      "lastName":"asd",
+      "email":"2@email.com",
+      "password":"asdwaqD"
+    });
+    console.log("Added");
+  }) 
   
   return (
     <Router>

@@ -44,7 +44,6 @@ public class Publisher implements UserDetails{
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "publisher")
     private List<Video> videoList;
 
-
     public Publisher(String firstName, String lastName, String email, String password, AppPublisherRole appPublisherRole) {
         this.firstName = firstName;
         this.lastName = lastName;

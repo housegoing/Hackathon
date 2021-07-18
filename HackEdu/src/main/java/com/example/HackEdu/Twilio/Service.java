@@ -1,6 +1,6 @@
 package com.example.HackEdu.Twilio;
 
-import com.example.HackEdu.TwilioSMSSender;
+import com.example.HackEdu.Twilio.TwilioSmsSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -9,7 +9,7 @@ public class Service {
     private final SmsSender smsSender;
 
     @Autowired
-    public Service(@Qualifier("twilio") TwilioSMSSender smsSender) {
+    public Service(@Qualifier("twilio") TwilioSmsSender smsSender) {
         this.smsSender = smsSender;
     }
 

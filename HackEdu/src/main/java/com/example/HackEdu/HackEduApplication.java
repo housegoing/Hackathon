@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootApplication
-public class HackEduApplication implements CommandLineRunner {
+public class HackEduApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HackEduApplication.class, args);
@@ -38,20 +38,20 @@ public class HackEduApplication implements CommandLineRunner {
 	@Autowired
 	private CourseRepository courseRepository;
 
-
-	@Override
-	public void run(String... args) throws Exception {
-		Course course = new Course();
-		course.setTopic("Art");
-		courseRepository.save(course);
-		Article article = new Article();
-		article.setName("Test");
-		article.setCourse(course);
-		articleRepository.save(article);
-
-		List<Article> articleList = articleService.getArticalByTopic(course.getTopic());
-
-		articleList.forEach((n)->System.out.print(n.getName()));
-	}
+//
+//	@Override
+//	public void run(String... args) throws Exception {
+//		Course course = new Course();
+//		course.setTopic("Art");
+//		courseRepository.save(course);
+//		Article article = new Article();
+//		article.setName("Test");
+//		article.setCourse(course);
+//		articleRepository.save(article);
+//
+//		List<Article> articleList = articleService.getArticalByTopic(course.getTopic());
+//
+//		articleList.forEach((n)->System.out.print(n.getName()));
+//	}
 
 }
