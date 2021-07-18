@@ -78,7 +78,7 @@ const UploadHistory = () => {
                 
                 <div>
                     <Typography> 
-                        Context: {}
+                        Context: example_context{}
                     </Typography>
                 </div>
                     
