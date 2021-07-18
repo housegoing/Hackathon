@@ -62,7 +62,7 @@ const UploadHistory = () => {
 
                 </div>
                 <div>
-                    <Typography> Context: {oneRecord.context}
+                    <Typography> Context: example_context{oneRecord.context}
                     </Typography>
                 </div>
                 <hr/>
@@ -71,7 +71,7 @@ const UploadHistory = () => {
             <div  className={classes.record}>
                 <div>
                     <Typography>
-                        Title: {}
+                        Title: example_title{}
                     </Typography>
 
                 </div>
@@ -87,13 +87,13 @@ const UploadHistory = () => {
             <div className={classes.record}>
                 <div>
                     <Typography>
-                        Title: {}
+                        Title: example_title{}
                     </Typography>
 
                 </div>
                 <div>
                     <Typography> 
-                        Context: {}
+                        Context: example_context{}
                     </Typography>
                 </div>
             </div>
